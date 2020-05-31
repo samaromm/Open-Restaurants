@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './App.css';
 import {csv} from 'd3';
 import data from './data.csv';
+import OpenRestaurants from './containers/FindOpenRestaurants'
 
 const App =() => {
   const[list,setList]= useState([])
@@ -16,7 +17,7 @@ const App =() => {
 
   return (
     <div>
-      {console.log(dateTime)}
+      <OpenRestaurants list={list} dateTime={dateTime}/>
     </div>
   );
 }
