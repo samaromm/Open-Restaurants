@@ -1,24 +1,22 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useEffect, useState } from 'react';
 import './App.css';
+import {csv} from 'd3';
+import data from './data.csv';
 
-function App() {
+const App =() => {
+  const[list,setList]= useState([])
+  const dateTime = new Date('2025-06-17T08:24:00');
+
+  useEffect(()=>{
+    csv(data)
+    .then(list=>{
+      setList(list)
+    })
+  },[]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      {console.log(dateTime)}
     </div>
   );
 }
