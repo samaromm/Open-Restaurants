@@ -16,12 +16,14 @@ class MainPage extends React.Component {
   onChange = (date) => this.setState({ date });
 
   onClick = () => {
-    this.setState({
-      day: this.state.date.getDay(),
-      time:
-        this.state.date.getHours() * 60 * 60 +
-        this.state.date.getMinutes() * 60,
-    });
+    if (this.state.date) {
+      this.setState({
+        day: this.state.date.getDay(),
+        time:
+          this.state.date.getHours() * 60 * 60 +
+          this.state.date.getMinutes() * 60,
+      });
+    }
   };
 
   render() {
@@ -33,7 +35,7 @@ class MainPage extends React.Component {
           Find open restaurans at the time you choose!
         </h3>
         <div>
-          <Row className="d-flex justify-content-center mb-3 text-center">
+          <Row className="mb-3 text-center">
             <Col>
               <DateTimePicker
                 onChange={this.onChange}
