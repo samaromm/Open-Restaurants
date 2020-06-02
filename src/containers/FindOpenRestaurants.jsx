@@ -1,12 +1,60 @@
 import React from 'react';
 
-class FindOpenRestaurants extends React.Component {
-  render(){
-      return(
-          <div>
-             {console.log(this.props.dateTime)} 
-          </div>
-      )
+const FindOpenRestaurants=(props)=>{
+    const week=["Mon","Tue","Wed","Thu","Fri","Sat","Sun"]
+    let resturants=[]
+
+    props.list.map(element=>{
+        // ["Mon-Sun", "5:30", "pm", "2", "am"]
+        let hoursSplit = element['hours'].split(' ').filter(a=>(a!==""&&a!=="/"&&a!=="-")); 
+        // ["Mon-Sun", 63000, 7200]   
+        let hoursJoin=[]       
+        for(let i=0; i<hoursSplit.length; i++){
+            let str = hoursSplit[i];
+            if(parseInt(str)){
+               let hour =parseInt(str) 
+               if(hoursSplit[++i]==="pm") hour+=12
+               let minutes = 0
+               if(str.length>2) minutes = parseInt(str.substring(str.length-2, str.length))
+               str=(hour*60*60)+(minutes*60)
+            }
+            hoursJoin.push(str) 
+        }
+        let dayTimeList={}
+        for(let e=0; e<hoursJoin.length;e++){
+            let ele =  hoursJoin[e]
+            if(typeof ele==="string"){
+                let firstDay= ele.substring(0, 3);
+                if(ele.length>3) {
+                    let secDay =ele.substring(4,7), timeFirstIndex=++e,timeSecIndex=++e;
+                    if(ele.length>7){
+                        let thirdDay=hoursJoin[timeFirstIndex]
+                        dayTimeList[thirdDay]=[hoursJoin[++timeFirstIndex],hoursJoin[++timeSecIndex]]
+                        ++e;
+                    }
+                    for(let k=week.indexOf(firstDay); k<=week.indexOf(secDay);k++){
+                        dayTimeList[week[k]]=[hoursJoin[timeFirstIndex],hoursJoin[timeSecIndex]]
+                    }
+                }
+                else{
+                    dayTimeList[firstDay]=[hoursJoin[++e],hoursJoin[++e]]
+                }
+            }
+        }
+        //in case the restuarnt doesn't open 7 days a week
+        if(dayTimeList[props.day]){
+            let openTime=dayTimeList[props.day][0]
+            let closeTime=dayTimeList[props.day][1]
+            if(props.time>=openTime&&props.time <= closeTime) resturants.push(element['name'])
+        }
+        console.log(dayTimeList)
+        return ""
+    })
+
+    return(
+        <div>
+            {console.log(resturants)}
+        </div>
+    )
   }
-}
 export default FindOpenRestaurants;
