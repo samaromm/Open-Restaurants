@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { BrowserRouter as Router, Route} from 'react-router-dom';
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import "./App.css";
 import { csv } from "d3";
 import data from "./data.csv";
 import Home from "./containers/MainPage";
+import header from "./images/header.png";
 
 const App = () => {
   const [list, setList] = useState([]);
@@ -15,9 +16,12 @@ const App = () => {
   }, []);
 
   return (
-    <Router basename='/'>
-      <Route path="/" component={() => <Home list={list} />}/>
-    </Router>
+    <div>
+      <img src={header} class="img-fluid" alt="Header" width="100%"/>
+      <Router basename="/">
+        <Route path="/" component={() => <Home list={list} />} />
+      </Router>
+    </div>
   );
 };
 
