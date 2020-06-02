@@ -16,11 +16,11 @@ const FindOpenRestaurants = (props) => {
       let str = hoursSplit[i];
       if (parseInt(str)) {
         let hour = parseInt(str);
-        if (hour!==12&&hoursSplit[++i] === "pm") hour += 12;
+        if (hour !== 12 && hoursSplit[++i] === "pm") hour += 12;
         let minutes = 0;
         if (str.length > 2)
           minutes = parseInt(str.substring(str.length - 2, str.length));
-        str = hour * 60 + minutes ;
+        str = hour * 60 + minutes;
       }
       hoursJoin.push(str);
     }
@@ -58,7 +58,7 @@ const FindOpenRestaurants = (props) => {
       let openTime = dayTimeList[props.day][0];
       let closeTime = dayTimeList[props.day][1];
       // from pm to am, add 24 hours to the closing
-      if(openTime>closeTime) closeTime+=1440
+      if (openTime > closeTime) closeTime += 1440;
       if (props.time >= openTime && props.time <= closeTime)
         restaurants.push(element["name"]);
     }

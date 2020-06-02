@@ -1,7 +1,7 @@
 import React from "react";
 import DateTimePicker from "react-datetime-picker";
 import Restaurant from "../components/FindOpenRestaurants";
-import { Button} from "react-bootstrap";
+import { Button } from "react-bootstrap";
 
 class MainPage extends React.Component {
   constructor(props) {
@@ -19,9 +19,7 @@ class MainPage extends React.Component {
     if (this.state.date) {
       this.setState({
         day: this.state.date.getDay(),
-        time:
-          this.state.date.getHours() * 60 +
-          this.state.date.getMinutes() ,
+        time: this.state.date.getHours() * 60 + this.state.date.getMinutes(),
       });
     }
   };
