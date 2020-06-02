@@ -7,7 +7,7 @@ import OpenRestaurants from './containers/FindOpenRestaurants'
 const App =() => {
   const[list,setList]= useState([])
   const dateTime = new Date('2025-06-17T08:24:00');
-  //get day method returns a number where sunday=0
+  //getday method returns a number where sunday=0
   let weekdays=["Sun","Mon","Tue","Wed","Thu","Fri","Sat"]
   let day = weekdays[dateTime.getDay()]
   let time =(dateTime.getHours()*60*60)+(dateTime.getMinutes()*60)
