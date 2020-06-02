@@ -2,7 +2,7 @@ import React from "react";
 
 const FindOpenRestaurants = (props) => {
   const week = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
-  let resturants = [];
+  let restaurants = [];
 
   props.list.map((element) => {
     // ["Mon-Sun", "5:30", "pm", "2", "am"]
@@ -23,6 +23,7 @@ const FindOpenRestaurants = (props) => {
       }
       hoursJoin.push(str);
     }
+    //list of all the days, each days as a key and its' time is the value
     let dayTimeList = {};
     for (let e = 0; e < hoursJoin.length; e++) {
       let ele = hoursJoin[e];
@@ -56,12 +57,12 @@ const FindOpenRestaurants = (props) => {
       let openTime = dayTimeList[props.day][0];
       let closeTime = dayTimeList[props.day][1];
       if (props.time >= openTime && props.time <= closeTime)
-        resturants.push(element["name"]);
+        restaurants.push(element["name"]);
     }
-    console.log(dayTimeList);
+    //console.log(dayTimeList);
     return "";
   });
 
-  return <div>{console.log(resturants)}</div>;
+  return <div>{console.log(restaurants)}</div>;
 };
 export default FindOpenRestaurants;
