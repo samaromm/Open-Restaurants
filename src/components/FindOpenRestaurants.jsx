@@ -16,7 +16,7 @@ const FindOpenRestaurants = (props) => {
       let str = hoursSplit[i];
       if (parseInt(str)) {
         let hour = parseInt(str);
-        if (hoursSplit[++i] === "pm") hour += 12;
+        if (hour!==12&&hoursSplit[++i] === "pm") hour += 12;
         let minutes = 0;
         if (str.length > 2)
           minutes = parseInt(str.substring(str.length - 2, str.length));
