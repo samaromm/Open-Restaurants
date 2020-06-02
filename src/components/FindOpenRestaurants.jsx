@@ -59,7 +59,6 @@ const FindOpenRestaurants = (props) => {
       if (props.time >= openTime && props.time <= closeTime)
         restaurants.push(element["name"]);
     }
-    //console.log(dayTimeList);
     return "";
   });
 

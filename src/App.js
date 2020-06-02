@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { BrowserRouter as Router, Route} from 'react-router-dom';
 import "./App.css";
 import { csv } from "d3";
 import data from "./data.csv";
@@ -14,9 +15,9 @@ const App = () => {
   }, []);
 
   return (
-    <div>
-      <Home list={list} />
-    </div>
+    <Router basename='/'>
+      <Route path="/" component={() => <Home list={list} />}/>
+    </Router>
   );
 };
 
