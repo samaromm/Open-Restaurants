@@ -10,6 +10,7 @@
     "bootstrap-daterangepicker": "^3.1.0",
     "d3": "^5.16.0",
     "fix": "0.0.6",
+    "moment": "^2.26.0",
     "onefe-bootstrap-daterangepicker": "^2.1.17",
     "prettier": "^2.0.5",
     "react": "^16.13.1",
@@ -17,6 +18,7 @@
     "react-bootstrap-datetimerangepicker": "^2.0.4",
     "react-datetime-picker": "^3.0.2",
     "react-dom": "^16.13.1",
+    "react-moment": "^0.9.7",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1"
   },

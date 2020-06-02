@@ -20,7 +20,7 @@ const FindOpenRestaurants = (props) => {
         let minutes = 0;
         if (str.length > 2)
           minutes = parseInt(str.substring(str.length - 2, str.length));
-        str = hour * 60 * 60 + minutes * 60;
+        str = hour * 60 + minutes ;
       }
       hoursJoin.push(str);
     }
@@ -57,6 +57,8 @@ const FindOpenRestaurants = (props) => {
     if (dayTimeList[props.day]) {
       let openTime = dayTimeList[props.day][0];
       let closeTime = dayTimeList[props.day][1];
+      // from pm to am, add 24 hours to the closing
+      if(openTime>closeTime) closeTime+=1440
       if (props.time >= openTime && props.time <= closeTime)
         restaurants.push(element["name"]);
     }

@@ -20,8 +20,8 @@ class MainPage extends React.Component {
       this.setState({
         day: this.state.date.getDay(),
         time:
-          this.state.date.getHours() * 60 * 60 +
-          this.state.date.getMinutes() * 60,
+          this.state.date.getHours() * 60 +
+          this.state.date.getMinutes() ,
       });
     }
   };
