@@ -1,4 +1,5 @@
 import React from "react";
+import Display from "./ShowRestaurants";
 
 const FindOpenRestaurants = (props) => {
   const week = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
@@ -62,6 +63,10 @@ const FindOpenRestaurants = (props) => {
     return "";
   });
 
-  return <div>{console.log(restaurants)}</div>;
+  return (
+    <div>
+      <Display restList={restaurants} />
+    </div>
+  );
 };
 export default FindOpenRestaurants;

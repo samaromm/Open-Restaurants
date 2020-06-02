@@ -17,7 +17,7 @@ const App = () => {
 
   return (
     <div>
-      <img src={header} className="img-fluid headerImg" alt="Header"/>
+      <img src={header} className="img-fluid headerImg" alt="Header" />
       <Router basename="/">
         <Route path="/" component={() => <Home list={list} />} />
       </Router>
