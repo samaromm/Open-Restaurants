@@ -1,68 +1,54 @@
+
+# Fooday&night
+A simple single-page website where the user can choose date/time, click find, and get a list of restaurants that're working on that time
+
+[Live demo](https://foodayndnight.netlify.app/)
+
+![screen record](https://i.ibb.co/BGtp02S/20200603-034624.gif)
+
+## About
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+A csv file contains a list of restaurants and their working hours/days is located in the project directory. App.js reads the csv content, store it as an array of objects (with headers name, hours), and send the array to containers/MainPage.
 
-In the project directory, you can run:
+containers/MainPage gets the date object from the user using the package React-DateTime-Picker, convert the date to day and time information ***We're converting HH:MM format into minutes for easy calculations***, and sends these info, as well as the csv array, as props to component/FindOpenRestaurant. 
 
-### `yarn start`
+component/FindOpenRestaurant contains the main algorithm:
+ - we're mapping through each objects in the csv array.
+ - spliting, removing -/spaces, and changing from am/pm format to minutes.
+ - creating a list with each week day as key and the array [openHours, closeHours] is its' value.
+ - and lastly comparing the time the user entered to the open/close hours, if open<=value<=close show the restaurant name.
+ /***Notice that in order for the algorithm to work correctly we need to check first if close>open, if not we need to add a day to the closing hours (Thu-Fri 5 pm - 1:30 am)***/
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+component/ShowRestaurants is only used for displaying the restaurants' names in gui, if no restaurant is opened at that hour it will display "nothing to see here"
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+```text
+Working on the algorithm alone took like 8 or so hours, the challenging part was thinking of how to analyze the contents of csv file, but writing the code itself didn't take much time, if we're not counting the GUI.
+GUI took longer time because of searching for design ideas, and for the perfect date picker package.
+```
+ 
+## Scripts
+To run the app locally
+```text
+npm install
+```
+```text
+npm start
+```
 
-### `yarn test`
+## Packages
+```text
+bootstrap
+```
+```text
+d3 (for reading the data from the csv file)
+```
+```text
+react-uuid (for generating random key ids to list's items)
+```
+```text
+react-datetime-picker
+```
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `yarn build`
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
