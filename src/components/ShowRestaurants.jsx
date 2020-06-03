@@ -18,8 +18,8 @@ const ShowRestaurants = (props) => {
       return (
         <Col md="3" sm="4" key={uuid()}>
           <h3 className="restaurantsName m-3">
-          <i className="fa fa-cutlery mx-2"></i>
-          {a}
+            <i className="fa fa-cutlery mx-2"></i>
+            {a}
           </h3>
         </Col>
       );
